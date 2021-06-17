@@ -62,29 +62,29 @@ VOID DsimModel::simulate(ABSTIME time, DSIMMODES mode) {
 	Y0  = ishigh(pin_Y0->istate());;
 	Cn  = islow(pin_Cn->istate());;
 
-	Cn1 = ~(Y0 & X0 | Y0 & Cn);
-	Cn2 = ~(Y1 & X1 | Y1 & Y0 & X0 | Y0 & Y1 & Cn);
-	Cn3 = ~(Y2 & X2 | Y2 & Y1 & X1 | Y2 & Y1 & Y0 & X0 | Y2 & Y1 & Y0 & Cn);
-	Cn4 = ~(Y3 & X3 | Y3 & Y2 & X2 | Y3 & Y2 & Y1 & X1 | Y3 & Y2 & Y1 & Y0 & X0 | Y3 & Y2 & Y1 & Y0 & Cn);
-	Cn5 = ~(Y4 & X4 | Y4 & Y3 & X3 | Y4 & Y3 & Y2 & X2 | Y4 & Y3 & Y2 & Y1 & X1 | Y4 & Y3 & Y2 & Y1 & Y0 & X0 
+	Cn1 = !(Y0 & X0 | Y0 & Cn);
+	Cn2 = !(Y1 & X1 | Y1 & Y0 & X0 | Y0 & Y1 & Cn);
+	Cn3 = !(Y2 & X2 | Y2 & Y1 & X1 | Y2 & Y1 & Y0 & X0 | Y2 & Y1 & Y0 & Cn);
+	Cn4 = !(Y3 & X3 | Y3 & Y2 & X2 | Y3 & Y2 & Y1 & X1 | Y3 & Y2 & Y1 & Y0 & X0 | Y3 & Y2 & Y1 & Y0 & Cn);
+	Cn5 = !(Y4 & X4 | Y4 & Y3 & X3 | Y4 & Y3 & Y2 & X2 | Y4 & Y3 & Y2 & Y1 & X1 | Y4 & Y3 & Y2 & Y1 & Y0 & X0 
 		            | Y4 & Y3 & Y2 & Y1 & Y0 & Cn);
-	Cn6 = ~(Y5 & X5 | Y5 & Y4 & X4 | Y5 & Y4 & Y3 & X3 | Y5 & Y4 & Y3 & Y2 & X2 | Y5 & Y4 & Y3 & Y2 & Y1 & X1 
+	Cn6 = !(Y5 & X5 | Y5 & Y4 & X4 | Y5 & Y4 & Y3 & X3 | Y5 & Y4 & Y3 & Y2 & X2 | Y5 & Y4 & Y3 & Y2 & Y1 & X1 
 		            | Y5 & Y4 & Y3 & Y2 & Y1 & Y0 & X0 | Y5 & Y4 & Y3 & Y2 & Y1 & Y0 & Cn);
-	Cn7 = ~(Y6 & X6 | Y6 & Y5 & X5 | Y6 & Y5 & Y4 & X4 | Y6 & Y5 & Y4 & Y3 & X3 | Y6 & Y5 & Y4 & Y3 & Y2 & X2 
+	Cn7 = !(Y6 & X6 | Y6 & Y5 & X5 | Y6 & Y5 & Y4 & X4 | Y6 & Y5 & Y4 & Y3 & X3 | Y6 & Y5 & Y4 & Y3 & Y2 & X2 
 					| Y6 & Y5 & Y4 & Y3 & Y2 & Y1 & X1 | Y6 & Y5 & Y4 & Y3 & Y2 & Y1 & Y0 & X0 
 					| Y6 & Y5 & Y4 & Y3 & Y2 & Y1 & Y0 & Cn);
-	Cn8 = ~(Y7 & X7 | Y7 & Y6 & X6 | Y7 & Y6 & Y5 & X5 | Y7 & Y6 & Y5 & Y4 & X4 | Y7 & Y6 & Y5 & Y4 & Y3 & X3 
+	Cn8 = !(Y7 & X7 | Y7 & Y6 & X6 | Y7 & Y6 & Y5 & X5 | Y7 & Y6 & Y5 & Y4 & X4 | Y7 & Y6 & Y5 & Y4 & Y3 & X3 
 					| Y7 & Y6 & Y5 & Y4 & Y3 & Y2 & X2 | Y7 & Y6 & Y5 & Y4 & Y3 & Y2 & Y1 & X1 
 					| Y7 & Y6 & Y5 & Y4 & Y3 & Y2 & Y1 & Y0 & X0 | Y7 & Y6 & Y5 & Y4 & Y3 & Y2 & Y1 & Y0 & Cn);
 
-	pin_Cn1->setstate(time + 10000, 0, Cn1 ? SLO : SHI);
-	pin_Cn2->setstate(time + 10000, 0, Cn2 ? SLO : SHI);
-	pin_Cn3->setstate(time + 10000, 0, Cn3 ? SLO : SHI);
-	pin_Cn4->setstate(time + 10000, 0, Cn4 ? SLO : SHI);
-	pin_Cn5->setstate(time + 10000, 0, Cn5 ? SLO : SHI);
-	pin_Cn6->setstate(time + 10000, 0, Cn6 ? SLO : SHI);
-	pin_Cn7->setstate(time + 10000, 0, Cn7 ? SLO : SHI);
-	pin_Cn8->setstate(time + 10000, 0, EC8 ? (Cn8 ? SLO : SHI) : FLT);
+	pin_Cn1->setstate(time, 0, Cn1 ? SHI : SLO);
+	pin_Cn2->setstate(time, 0, Cn2 ? SHI : SLO);
+	pin_Cn3->setstate(time, 0, Cn3 ? SHI : SLO);
+	pin_Cn4->setstate(time, 0, Cn4 ? SHI : SLO);
+	pin_Cn5->setstate(time, 0, Cn5 ? SHI : SLO);
+	pin_Cn6->setstate(time, 0, Cn6 ? SHI : SLO);
+	pin_Cn7->setstate(time, 0, Cn7 ? SHI : SLO);
+	pin_Cn8->setstate(time, 0, EC8 ? (Cn8 ? SLO : SHI) : FLT);
 } 
 
 VOID DsimModel::runctrl (RUNMODES mode) {}
