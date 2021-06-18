@@ -39,7 +39,13 @@ VOID DsimModel::setup (IINSTANCE *instance, IDSIMCKT *dsimckt) {
 	pin_Cn7 = inst->getdsimpin("Cn+7",true);
 	pin_Cn8 = inst->getdsimpin("Cn+8",true);
 
-
+	pin_Cn1->setstate(SHI);
+	pin_Cn2->setstate(SHI);
+	pin_Cn3->setstate(SHI);
+	pin_Cn4->setstate(SHI);
+	pin_Cn5->setstate(SHI);
+	pin_Cn6->setstate(SHI);
+	pin_Cn7->setstate(SHI);
 }
 
 VOID DsimModel::simulate(ABSTIME time, DSIMMODES mode) {
@@ -77,7 +83,7 @@ VOID DsimModel::simulate(ABSTIME time, DSIMMODES mode) {
 					| Y7 & Y6 & Y5 & Y4 & Y3 & Y2 & X2 | Y7 & Y6 & Y5 & Y4 & Y3 & Y2 & Y1 & X1 
 					| Y7 & Y6 & Y5 & Y4 & Y3 & Y2 & Y1 & Y0 & X0 | Y7 & Y6 & Y5 & Y4 & Y3 & Y2 & Y1 & Y0 & Cn);
 
-	pin_Cn1->setstate(time, 0, Cn1 ? SHI : SLO);
+	pin_Cn1->setstate(time, 20000, 20000, 0, Cn1 ? SHI : SLO);
 	pin_Cn2->setstate(time, 0, Cn2 ? SHI : SLO);
 	pin_Cn3->setstate(time, 0, Cn3 ? SHI : SLO);
 	pin_Cn4->setstate(time, 0, Cn4 ? SHI : SLO);
