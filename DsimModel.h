@@ -1,8 +1,10 @@
 #pragma once
+
 #include "StdAfx.h"
 #include "sdk/vsm.hpp"
 
-#define InfoLog(__s__) inst->log(__s__);
+#include <string>
+#include <vector>
 
 class DsimModel : public IDSIMMODEL
 {
@@ -18,34 +20,14 @@ private:
 	IINSTANCE *inst;
 	IDSIMCKT *ckt;
 	
-	// input pins
+	//= input pins
 	IDSIMPIN* pin_EC8;
-	IDSIMPIN* pin_Y7;
-	IDSIMPIN* pin_X7;
-	IDSIMPIN* pin_Y6;
-	IDSIMPIN* pin_X6;
-	IDSIMPIN* pin_X5;
-	IDSIMPIN* pin_X4;
-	IDSIMPIN* pin_Y5;
-	IDSIMPIN* pin_Y4;
-	IDSIMPIN* pin_X3;
-	IDSIMPIN* pin_Y3;
-	IDSIMPIN* pin_X2;
-	IDSIMPIN* pin_Y2;
-	IDSIMPIN* pin_Y1;
-	IDSIMPIN* pin_X1;
-	IDSIMPIN* pin_X0;
-	IDSIMPIN* pin_Y0;
+	std::vector<IDSIMPIN*> pins_X;
+	std::vector<IDSIMPIN*> pins_Y;
+	//= inverted
 	IDSIMPIN* pin_Cn;
-	// output
-	IDSIMPIN* pin_Cn1;
-	IDSIMPIN* pin_Cn2;
-	IDSIMPIN* pin_Cn3;
-	IDSIMPIN* pin_Cn4;
-	IDSIMPIN* pin_Cn5;
-	IDSIMPIN* pin_Cn6;
-	IDSIMPIN* pin_Cn7;
-	IDSIMPIN* pin_Cn8;
+	//= output
+	std::vector<IDSIMPIN*> pins_Cn;
 	
 	bool EC8;
 	bool Y7;
@@ -73,6 +55,4 @@ private:
 	bool Cn6;
 	bool Cn7;
 	bool Cn8;
-
-	// IDEBUGPOPUP *myPopup;
 };
