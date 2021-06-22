@@ -1,4 +1,8 @@
 .vs/
+*.pdsbak
+*.workspace
+*Backups*/
+Release/
 
 # Windows image file caches
 Thumbs.db
