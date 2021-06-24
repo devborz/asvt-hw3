@@ -6,7 +6,7 @@
 //#include "ActiveModel.h"
 #include "DsimModel.h"
 
-#define VSMModel_key 0x00000000
+#define VSMModel_key 0x00000001
 
 extern "C" {
 	IDSIMMODEL __declspec (dllexport) *createdsimmodel(CHAR *device, ILICENCESERVER *ils) {
