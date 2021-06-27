@@ -82,7 +82,7 @@ VOID DsimModel::simulate(ABSTIME time, DSIMMODES mode) {
 	X1  = ishigh(pins_X[1]->istate());;
 	X0  = ishigh(pins_X[0]->istate());;
 	Y0  = ishigh(pins_Y[0]->istate());;
-	Cn  = ishigh(pin_Cn->istate());;
+	Cn  = pin_Cn->isactive();;
 
 	Cn1 = (Y0 & X0 | Y0 & Cn);
 	Cn2 = (Y1 & X1 | Y1 & Y0 & X0 | Y0 & Y1 & Cn);
